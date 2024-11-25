@@ -5,6 +5,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import useLocalStorage from 'use-local-storage'
 import Navbar from './components/Navbar/Navbar'
+import Home from './pages/Home'
 
 function App() {
   const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -14,7 +15,7 @@ function App() {
     <Router>
       <Navbar theme={theme} setTheme={setTheme} />
       <Routes>
-
+        <Route path="/" element={<Home theme={theme} />} />
       </Routes>
     </Router>
   )
