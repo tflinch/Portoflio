@@ -1,11 +1,9 @@
-import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import useLocalStorage from 'use-local-storage'
 import Navbar from './components/Navbar/Navbar'
 import Home from './pages/Home'
+import Footer from './components/Footer/Footer'
 
 function App() {
   const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -17,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home theme={theme} />} />
       </Routes>
+      <Footer theme={theme} />
     </Router>
   )
 }

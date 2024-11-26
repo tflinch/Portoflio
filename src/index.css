@@ -333,6 +333,12 @@
         justify-content: space-between;
     }
 
+    .site-footer {
+        text-align: center;
+        padding-block: 2rem;
+        gap: 2rem;
+    }
+
     [aria-controls='primary-nav'] {
         z-index: 100;
         background: transparent;
@@ -491,6 +497,18 @@
         background-color: var(--background-extra-light);
         padding: 0.75rem;
         border-radius: var(--border-radius-md);
+    }
+
+    .button {
+        display: inline-flex;
+        align-items: center;
+        column-gap: 0.5rem;
+        background-color: #43a4f5;
+        color: #fff;
+        padding: 0.5rem 0.6rem;
+        border-radius: 0.5rem;
+        transition: 0.3s;
+        box-shadow: 0 8px 24px hsla(var(--hue), var(--sat), var(--lig), 0.25);
     }
 }
 

@@ -1,5 +1,4 @@
-import { Container, Row, Col } from 'react-bootstrap';
-// import 'bootstrap/dist/css/bootstrap.min.css'
+import { RiLink } from '@remixicon/react';
 import { ReactTyped } from "react-typed";
 // import StarsBackground from '../components/Stars/StarsBackground'
 
@@ -49,7 +48,7 @@ const project_card = projects.map((project) => {
                     <span className="projects__subtitle">{project.project}</span>
                     <h3 className="projects__title">{project.project}</h3>
                     <a href="#" className="projects__button button button__small">
-                        <i className="ri-link"></i>
+                        <RiLink></RiLink>
                     </a>
                 </div>
             </div>
