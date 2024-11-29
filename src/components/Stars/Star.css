@@ -1,0 +1,29 @@
+/* src/components/Star.css */
+.star.dark {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    /* border-radius: 50%; */
+    font-size: 3em;
+    animation: moveStars linear infinite;
+  }
+.star.light {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #2E236C;
+    /* border-radius: 50%; */
+    animation: moveStars linear infinite;
+    font-size: 5em;
+  }
+  
+  @keyframes moveStars {
+    from {
+      transform: translateY(0) translateX(0);
+    }
+    to {
+      transform: translateY(100vh) translateX(100vw);
+    }
+  }
+  

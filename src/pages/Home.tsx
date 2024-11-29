@@ -1,5 +1,6 @@
 import { RiLink } from '@remixicon/react';
 import { ReactTyped } from "react-typed";
+import StarsBackground from '../components/Stars/StarsBackground';
 // import StarsBackground from '../components/Stars/StarsBackground'
 
 
@@ -61,7 +62,8 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
     return (
         <main className={theme}>
             <section className='hero section' data-padding='compact'>
-                {/* <StarsBackground theme={theme}></StarsBackground> */}
+
+                <StarsBackground theme={theme}></StarsBackground>
 
                 <ReactTyped strings={textLines} typeSpeed={60} backSpeed={50} />
 
