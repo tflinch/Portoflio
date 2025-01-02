@@ -65,7 +65,7 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
 
                 <StarsBackground theme={theme}></StarsBackground>
 
-                <ReactTyped strings={textLines} typeSpeed={60} backSpeed={50} />
+                <ReactTyped strings={textLines} typeSpeed={60} backSpeed={50} style={{ fontSize: '2rem' }} />
 
             </section>
             <section className='section'>

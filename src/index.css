@@ -100,24 +100,24 @@
     }
 
     @font-face {
-        font-family: 'Roboto';
-        src: url('../src/assets/fonts/Roboto/Roboto-Black.ttf') format('truetype');
+        font-family: 'Lato';
+        src: url('../src/assets/fonts/Lato/Lato-Black.ttf') format('truetype');
         font-weight: 900;
         /* Black */
         font-style: normal;
     }
 
     @font-face {
-        font-family: 'Roboto';
-        src: url('../src/assets/fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+        font-family: 'Lato';
+        src: url('../src/assets/fonts/Lato/Lato-Bold.ttf') format('truetype');
         font-weight: 700;
         /* Bold */
         font-style: normal;
     }
 
     @font-face {
-        font-family: 'Roboto';
-        src: url('../src/assets/fonts/Roboto/Roboto-Italic.ttf') format('truetype');
+        font-family: 'Lato';
+        src: url('../src/assets/fonts/Lato/Lato-Italic.ttf') format('truetype');
         font-weight: 400;
         /* Italic */
         font-style: italic;
@@ -137,7 +137,7 @@
         --clr-pale-blue: hsl(216, 98%, 100%);
         --clr-purple-blue: hsl(240, 65%, 23%);
 
-        --ff-body: 'Roboto', sans-serif;
+        --ff-body: 'Lato', sans-serif;
         --ff-heading: 'Philosopher', sans-serif;
 
         --fs-300: 0.875rem;
@@ -216,14 +216,14 @@
             color: var(--clr-pantry-white);
         }
 
-        .light :hover,
+        .light a:hover,
         :focus-visible {
-            color: var(--text-brand-light);
+            color: var(--clr-light-blue);
         }
 
-        .dark :hover,
+        .dark a:hover,
         :focus-visible {
-            color: var(--text-brand-dark);
+            color: var(--clr-light-blue);
         }
     }
 
@@ -369,6 +369,10 @@
     }
 
     .primary-navigation {
+        font-family: var(--ff-body);
+        font-size: var(--font-size-lg);
+        font-weight: var(--fs-200);
+
         ul {
             display: flex;
             gap: 0.5rem 1rem;
@@ -376,6 +380,11 @@
 
         a {
             text-decoration: none;
+        }
+
+        a:hover,
+        a:focus-visbile {
+            color: var(--clr-light-blue);
         }
 
         @media (width < 760px) {
