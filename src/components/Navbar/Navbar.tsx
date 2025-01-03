@@ -39,7 +39,7 @@ const Navbar: React.FC<NavbarProps> = ({ theme, setTheme, }) => {
                             <li><NavLink to="/Experience">Experience</NavLink></li>
 
                             <li><NavLink to="/About">About</NavLink></li>
-                            <li><Link to="/contact">Contact</Link></li>
+                            <li><NavLink to="/contact">Contact</NavLink></li>
                             <li>
                                 {theme == 'light' ? <RiMoonFill size={26} color='black' className='my-icon' onClick={switchTheme} /> : <RiSunFill size={26} color='white' className='my-icon' onClick={switchTheme} />}
                             </li>

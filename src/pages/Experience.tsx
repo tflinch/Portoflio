@@ -130,7 +130,7 @@ const Experience: React.FC<experienceProps> = ({ theme }) => {
                             </div>
                         </div>
                     </div>
-                    <h2 className={`${theme} work_title`}>Education & Personal Development</h2>
+                    <h2 className={`${theme} work_title`} data-padding='block-end'>Education & Personal Development</h2>
                     <div className="resume__area">
                         <h2 className="resume__title">Kingsborough Community College </h2>
                         <div className="resume__box">
