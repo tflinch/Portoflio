@@ -52,7 +52,7 @@ const About: React.FC<aboutProps> = ({ theme }) => {
             <section className="section">
                 <div className="wrapper" data-width="wide">
                     <div className="equal-columns" data-gap="large" data-alignment="centered">
-                        <div>
+                        <div >
                             <img className="about-image" src="../../src/assets/img/tommy-flinch.jpg" alt="man smiling for a candid photo" />
                         </div>
                         <div className="flow font-family-basic">
@@ -75,13 +75,15 @@ const About: React.FC<aboutProps> = ({ theme }) => {
             </section>
             <section className="section">
                 <div className="wrapper" data-width="narrow">
-                    <div className="equal-columns" data-alignment="centered" data-auto="none">
+                    <div className="equal-columns" data-auto="none">
                         <div className="card">
-                            <p>Years of Work</p>
-                            <p>{contributions ? `${contributions} Contributions This Year` : 'Loading Contributions...'}</p>
-                            <p>Satisfied Customers</p>
+                            <h2>Stats</h2>
+                            <p>8+ Years of Work</p>
+                            <p>{contributions ? `${contributions}+ Contributions This Year` : 'Loading Contributions...'}</p>
+                            <p>5+ Satisfied Customers</p>
                         </div>
                         <div className="card">
+                            <h2>Skills</h2>
                             <div className="skills__box">
                                 <div className="skills__group">
                                     <div className="skills__data">
@@ -101,7 +103,7 @@ const About: React.FC<aboutProps> = ({ theme }) => {
                                     <div className="skills__data">
                                         <RiJavascriptLine />
                                         <div>
-                                            <h3 className="skills__name">JavaScript</h3>
+                                            <h3 className="skills__name">JS</h3>
                                             <span className="skills__level">Advance</span>
                                         </div>
                                     </div>

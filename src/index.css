@@ -294,10 +294,6 @@
             --equal-columns-gap: 2rem;
         }
 
-        &[data-vertical-alignment='centered'] {
-            --column-layout-alignment: center;
-        }
-
         &[data-auto='none'] {
             grid-auto-columns: auto;
         }
@@ -327,6 +323,7 @@
 }
 
 @layer components {
+
     .skip-to-main:not(:focus) {
         clip: rect(0 0 0 0);
         clip-path: inset(50%);
@@ -605,6 +602,7 @@
 
     .about-image {
         max-height: 600px;
+        justify-self: center;
     }
 
     .skills__box {

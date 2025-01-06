@@ -67,9 +67,7 @@ const getContributions = async (): Promise<GitHubUserContributions> => {
     
 
     const data = await response.json();
-    console.log(data.data.user);
     const totalContributions = data.data.user.contributionsCollection.contributionCalendar.totalContributions
-    console.log(totalContributions)
     return totalContributions;
 };
 
