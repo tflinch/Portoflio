@@ -290,6 +290,10 @@
             grid-auto-columns: 1fr;
         }
 
+        @media(width <760px) {
+            justify-content: center;
+        }
+
         &[data-gap='large'] {
             --equal-columns-gap: 2rem;
         }
@@ -608,9 +612,16 @@
     .skills__box {
         display: flex;
         justify-content: center;
+
         /* column-gap: 3rem; */
+        @media(width < 760px) {
+            flex-direction: column;
+
+        }
 
     }
+
+
 
     .skills__group {
         display: grid;
