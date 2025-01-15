@@ -51,7 +51,7 @@ const About: React.FC<aboutProps> = ({ theme }) => {
         <main className={theme}>
             <section className="section">
                 <div className="wrapper" data-width="wide">
-                    <div className="equal-columns" data-gap="large" data-alignment="centered">
+                    <div className="equal-columns" data-gap="large">
                         <div >
                             <img className="about-image" src="../../src/assets/img/tommy-flinch.jpg" alt="man smiling for a candid photo" />
                         </div>
