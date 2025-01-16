@@ -338,6 +338,8 @@
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+        /* Add spacing between input-boxes */
 
         input {
             margin-inline: .3rem;
@@ -346,6 +348,9 @@
 
     .text-box {
         height: 10rem;
+        margin-bottom: 1.5rem;
+        /* Add spacing between text-box and submit button */
+
     }
 
     input,
@@ -362,6 +367,19 @@
         margin: .7rem 0;
         height: 100%;
 
+    }
+
+    .error-txt {
+        color: var(--error-color, red);
+        /* Default error color is red */
+        font-size: 0.9rem;
+        /* Adjust font size for readability */
+        margin-top: 0.3rem;
+        /* Add spacing between input and error text */
+        text-align: left;
+        /* Align error messages to the left */
+        display: block;
+        /* Ensure errors appear below inputs */
     }
 
     .btn {

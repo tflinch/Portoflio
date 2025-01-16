@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Snackbar, Alert, AlertColor } from "@mui/material";
 
 interface ContactProps {
     theme: "light" | "dark";
@@ -22,11 +24,71 @@ const initialFormModel: FormModel = {
 
 const Contact: React.FC<ContactProps> = ({ theme }) => {
     const [messageDetails, setMessageDetails] = useState<FormModel>(initialFormModel);
+    const [errors, setErrors] = useState<Partial<FormModel>>({});
+    const [snackbar, setSnackbar] = useState<{ open: boolean; message: string; severity: AlertColor } | null>(null);
+    const navigate = useNavigate();
+
+    const validateForm = (): boolean => {
+        const newErrors: Partial<FormModel> = {};
+        let isValid = true;
+
+        if (!messageDetails.name.trim()) {
+            newErrors.name = "Name cannot be blank";
+            isValid = false;
+        }
+
+        if (!messageDetails.email.trim()) {
+            newErrors.email = "Email Address cannot be blank";
+            isValid = false;
+        } else {
+            const emailRegex = /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,3})(\.[a-z]{2,3})?$/;
+            if (!emailRegex.test(messageDetails.email)) {
+                newErrors.email = "Enter a valid email address";
+                isValid = false;
+            }
+        }
+
+        if (!messageDetails.number.trim()) {
+            newErrors.number = "Mobile Number cannot be blank";
+            isValid = false;
+        }
+
+        if (!messageDetails.subject.trim()) {
+            newErrors.subject = "Subject cannot be blank";
+            isValid = false;
+        }
+
+        if (!messageDetails.message.trim()) {
+            newErrors.message = "Message cannot be blank";
+            isValid = false;
+        }
+
+        setErrors(newErrors);
+        return isValid;
+    };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault(); // Fixed the typo
-        console.log("Form submitted with data:", messageDetails);
-        // Add form submission logic here, such as sending data to an API
+        event.preventDefault();
+        if (validateForm()) {
+            setSnackbar({
+                open: true,
+                message: "Your message has been sent successfully!",
+                severity: "success",
+            });
+            console.log(messageDetails)
+            setTimeout(() => {
+                navigate("/");
+            }, 2000);
+        } else {
+            const errorMessages = Object.values(errors)
+                .filter((error) => error)
+                .join(", ");
+            setSnackbar({
+                open: true,
+                message: errorMessages || "Please fix the errors in the form.",
+                severity: "error",
+            });
+        }
     };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -35,6 +97,16 @@ const Contact: React.FC<ContactProps> = ({ theme }) => {
             ...prevDetails,
             [name]: value,
         }));
+
+        // Clear the error for this input field
+        setErrors((prevErrors) => ({
+            ...prevErrors,
+            [name]: "",
+        }));
+    };
+
+    const handleSnackbarClose = () => {
+        setSnackbar(null);
     };
 
     return (
@@ -50,6 +122,7 @@ const Contact: React.FC<ContactProps> = ({ theme }) => {
                                     placeholder="Full Name"
                                     value={messageDetails.name}
                                     onChange={handleChange}
+                                    className={errors.name ? "error" : ""}
                                 />
                                 <input
                                     type="email"
@@ -57,6 +130,7 @@ const Contact: React.FC<ContactProps> = ({ theme }) => {
                                     placeholder="Email Address"
                                     value={messageDetails.email}
                                     onChange={handleChange}
+                                    className={errors.email ? "error" : ""}
                                 />
                             </div>
 
@@ -67,6 +141,7 @@ const Contact: React.FC<ContactProps> = ({ theme }) => {
                                     placeholder="Mobile Number"
                                     value={messageDetails.number}
                                     onChange={handleChange}
+                                    className={errors.number ? "error" : ""}
                                 />
                                 <input
                                     type="text"
@@ -74,6 +149,7 @@ const Contact: React.FC<ContactProps> = ({ theme }) => {
                                     placeholder="Email Subject"
                                     value={messageDetails.subject}
                                     onChange={handleChange}
+                                    className={errors.subject ? "error" : ""}
                                 />
                             </div>
 
@@ -85,6 +161,7 @@ const Contact: React.FC<ContactProps> = ({ theme }) => {
                                     placeholder="Your Message"
                                     value={messageDetails.message}
                                     onChange={handleChange}
+                                    className={errors.message ? "error" : ""}
                                 ></textarea>
                             </div>
 
@@ -93,6 +170,19 @@ const Contact: React.FC<ContactProps> = ({ theme }) => {
                     </form>
                 </div>
             </section>
+
+            {/* Snackbar for feedback */}
+            {snackbar && (
+                <Snackbar
+                    open={snackbar.open}
+                    autoHideDuration={3000}
+                    onClose={handleSnackbarClose}
+                >
+                    <Alert onClose={handleSnackbarClose} severity={snackbar.severity}>
+                        {snackbar.message}
+                    </Alert>
+                </Snackbar>
+            )}
         </main>
     );
 };
