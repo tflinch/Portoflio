@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Snackbar, Alert, AlertColor } from "@mui/material";
 
+import { sendEmail } from '../services/contact.ts'
+
+
 interface ContactProps {
     theme: "light" | "dark";
 }
@@ -67,18 +70,30 @@ const Contact: React.FC<ContactProps> = ({ theme }) => {
         return isValid;
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (validateForm()) {
-            setSnackbar({
-                open: true,
-                message: "Your message has been sent successfully!",
-                severity: "success",
-            });
-            console.log(messageDetails)
-            setTimeout(() => {
-                navigate("/");
-            }, 2000);
+            try {
+                await sendEmail(messageDetails);
+                setSnackbar({
+                    open: true,
+                    message: "Your message has been sent successfully!",
+                    severity: "success",
+                });
+                setTimeout(() => {
+                    navigate("/");
+                }, 2000);
+            } catch (err: any) {
+                console.error("Email sending error:", err);
+
+                // Handle API error response
+                const apiErrorMessage = err.message || "Failed to send email. Please try again later.";
+                setSnackbar({
+                    open: true,
+                    message: apiErrorMessage,
+                    severity: "error",
+                });
+            }
         } else {
             const errorMessages = Object.values(errors)
                 .filter((error) => error)
