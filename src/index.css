@@ -136,6 +136,11 @@
         --clr-cyan-blue: hsl(195, 10%, 92%);
         --clr-pale-blue: hsl(216, 98%, 100%);
         --clr-purple-blue: hsl(240, 65%, 23%);
+        --clr-grey: hsl(195, 10%, 92%);
+        --clr-green: hsl(143, 38%, 37%);
+        --clr-teal: hsl(186, 42%, 25%);
+        --clr-orange: hsl(25, 88%, 66%);
+        --clr-brown: hsl(28, 94%, 13%);
 
         --ff-body: 'Lato', sans-serif;
         --ff-heading: 'Philosopher', sans-serif;
@@ -576,6 +581,7 @@
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
+        color: black;
         gap: var(--card-gap, 1rem);
         width: 300px;
         padding: 1rem;
@@ -594,7 +600,9 @@
         height: 100%;
         bottom: -100%;
         left: 0;
-        background: linear-gradient(180deg, hsla(var(--hue), 24%, 40%, 0.3) 0%, hsla(var(--hue), 24%, 4%, 1) 95%);
+        background: linear-gradient(180deg,
+                transparent 0%,
+                var(--clr-grey) 100%);
         display: grid;
         align-items: flex-end;
         padding: 1.5rem 1.25rem;
@@ -621,6 +629,51 @@
         background-color: var(--background-extra-light);
         padding: 0.75rem;
         border-radius: var(--border-radius-md);
+    }
+
+    .tag-list {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+
+        li {
+            font-family: var(--ff-heading);
+            color: var(--text-high-contrast);
+            font-size: var(--font-size-sm);
+            padding: 0.125rem 0.25rem;
+            background-color: var(--tag-bg, red);
+            border-radius: var(--border-radius-sm);
+        }
+
+        [data-platform='web'] {
+            background-color: var(--clr-shade-blue);
+        }
+
+        [data-platform='mobile'] {
+            background-color: var(--clr-purple-blue);
+        }
+
+        [data-category='e-commerce'] {
+            background-color: var(--clr-green);
+        }
+
+        [data-category='enterainment'] {
+            background-color: var(--clr-teal);
+        }
+
+        [data-category='game'] {
+            background-color: var(--clr-light-blue);
+        }
+
+        [data-category='logistic'] {
+            background-color: var(--clr-brown);
+        }
+
+        [data-category='weather'] {
+            background-color: var(--clr-orange);
+        }
     }
 
     .button {
@@ -743,9 +796,27 @@
         height: 24px;
         width: 24px;
     }
+
+    select {
+        padding: 0.5rem 1rem;
+        background-color: var(--clr-light-blue);
+        border: 0;
+        border-radius: var(--border-radius-md);
+        color: var(--text-high-contrast);
+    }
 }
 
 @layer utilites {
+    .flex-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .flow>*+* {
+        margin-top: var(--flow-spacer, 1em);
+    }
+
     [hidden] {
         display: none;
     }
