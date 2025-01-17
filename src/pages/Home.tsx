@@ -16,27 +16,27 @@ const textLines = [`Hi, I'm Tommy`,
 
 const projects = [{
     project: 'Web',
-    img: '../../src/assets/img/project1.jpg',
-    title: 'Payment Site'
+    img: '../../src/assets/img/eventflow-screely.png',
+    title: 'Event Flow'
 }, {
-    project: 'Web',
-    img: '../../src/assets/img/project2.jpg',
-    title: 'Payment Site'
+    project: 'Web Game',
+    img: '../../src/assets/img/thelasticey-screely.png',
+    title: 'The Last Icey'
 }
     , {
     project: 'Web',
-    img: '../../src/assets/img/project3.jpg',
-    title: 'Payment Site'
+    img: '../../src/assets/img/spoiledpotato-screely.png',
+    title: 'Spoiled Potato'
 }
     , {
     project: 'Web',
-    img: '../../src/assets/img/project4.jpg',
-    title: 'Payment Site'
+    img: '../../src/assets/img/dailypoints-screely.png',
+    title: 'Daily Points'
 }
     , {
-    project: 'Web',
-    img: '../../src/assets/img/project5.jpg',
-    title: 'Payment Site'
+    project: 'Mobile',
+    img: '../../src/assets/img/weathersection.jpeg',
+    title: 'Weather Section'
 }
 ]
 
@@ -46,7 +46,7 @@ const project_card = projects.map((project) => {
             <img src={project.img} alt="Project 1" className="projects__img" />
             <div className="projects__modal">
                 <div>
-                    <span className="projects__subtitle">{project.project}</span>
+                    <span className="projects__subtitle">{project.title}</span>
                     <h3 className="projects__title">{project.project}</h3>
                     <a href="#" className="projects__button button button__small">
                         <RiLink></RiLink>
@@ -71,7 +71,7 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
             <section className='section'>
                 <div className='wrapper'>
                     <h2>Featured Projects</h2>
-                    <article className='equal-columns'>
+                    <article className='equal-columns' data-columns='three'>
                         {project_card}
                     </article>
                 </div>
