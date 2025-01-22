@@ -119,7 +119,7 @@ const About: React.FC<aboutProps> = ({ theme }) => {
                                         </div>
                                     </div>
                                     <div className="skills__data">
-                                        <img className="icon" src="../../src/assets/icons/python.png" alt="python logo" />
+                                        <img className="icon" src="https://port-images-bucket.s3.us-east-1.amazonaws.com/icons/python.png" alt="python logo" />
                                         <div>
                                             <h3 className="skills__name">Python</h3>
                                             <span className="skills__level">Intermediate</span>
@@ -135,7 +135,7 @@ const About: React.FC<aboutProps> = ({ theme }) => {
                                 </div>
                                 <div className="skills__group">
                                     <div className="skills__data">
-                                        <img className="icon" src="../../src/assets/icons/php-fill.png" alt="python logo" />
+                                        <img className="icon" src="https://port-images-bucket.s3.us-east-1.amazonaws.com/icons/php-fill.png" alt="python logo" />
                                         <div>
                                             <h3 className="skills__name">PHP</h3>
                                             <span className="skills__level">Basic</span>

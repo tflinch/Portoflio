@@ -18,30 +18,30 @@ const textLines = [`Hi, I'm Tommy`,
 
 const projects = [{
     platform: 'web',
-    img: '../../src/assets/img/eventflow-screely.png',
+    img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/eventflow-screely.png',
     title: 'Event Flow',
     category: 'logistic'
 }, {
     platform: 'web',
-    img: '../../src/assets/img/thelasticey-screely.png',
+    img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/thelasticey-screely.png',
     title: 'The Last Icey',
     category: 'game'
 }
     , {
     platform: 'web',
-    img: '../../src/assets/img/spoiledpotato-screely.png',
+    img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/spoiledpotato-screely.png',
     title: 'Spoiled Potato',
     category: 'enterainment'
 }
     , {
     platform: 'web',
-    img: '../../src/assets/img/dailypoints-screely.png',
+    img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/dailypoints-screely.png',
     title: 'Daily Points',
     category: 'e-commerce'
 }
     , {
     platform: 'mobile',
-    img: '../../src/assets/img/weathersection.jpeg',
+    img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/weathersection.jpeg',
     title: 'Weather Section',
     category: 'weather'
 }
