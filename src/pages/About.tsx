@@ -55,7 +55,7 @@ const About: React.FC<aboutProps> = ({ theme }) => {
                 <div className="wrapper" data-width="wide">
                     <div className="equal-columns" data-gap="large">
                         <div >
-                            <img className="about-image" src="https://port-images-bucket.s3.us-east-1.amazonaws.com/img/tommy-flinch.jpg" alt="man smiling for a candid photo" />
+                            <img className="about-image" src="https://port-images-bucket.s3.us-east-1.amazonaws.com/img/tommy-flinch.JPG" alt="man smiling for a candid photo" />
                         </div>
                         <div className="flow font-family-basic">
                             <h2 className={theme}>Hi!👋🏾 </h2>
