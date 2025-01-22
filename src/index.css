@@ -72,6 +72,18 @@
     select {
         font: inherit
     }
+
+    h2 {
+        &[data-aligntment='center'] {
+            align-self: center;
+        }
+    }
+
+    form {
+        background-color: var(--clr-grey);
+        padding: 1rem .5rem;
+        border-radius: var(--border-radius-md);
+    }
 }
 
 @layer base {
@@ -593,6 +605,16 @@
         img {
             border-radius: var(--border-radius-md);
         }
+
+        &[data-overflow='none'] {
+            width: 100%;
+            overflow: visible;
+        }
+
+        &[data-background='grey'] {
+            z-index: 1;
+            background-color: var(--clr-grey);
+        }
     }
 
     .projects__modal {
@@ -750,6 +772,8 @@
     .about-image {
         max-height: 600px;
         justify-self: center;
+        position: relative;
+        z-index: 1;
     }
 
     .skills__box {
@@ -798,6 +822,7 @@
     }
 
     select {
+        margin-block: .5rem;
         padding: 0.5rem 1rem;
         background-color: var(--clr-light-blue);
         border: 0;

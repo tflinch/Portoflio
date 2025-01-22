@@ -1,6 +1,7 @@
 import { RiCss3Line, RiGitRepositoryLine, RiHtml5Line, RiJavascriptLine, RiReactjsLine, RiDatabase2Line, RiNodejsLine, RiCloudLine, RiFirebaseLine } from '@remixicon/react';
 import { useState, useEffect } from 'react';
 import { getContributions } from '../services/GitStats.ts';
+import StarsBackground from '../components/Stars/StarsBackground.tsx';
 
 interface aboutProps {
     theme: 'light' | 'dark';
@@ -50,6 +51,7 @@ const About: React.FC<aboutProps> = ({ theme }) => {
     return (
         <main className={theme}>
             <section className="section">
+
                 <div className="wrapper" data-width="wide">
                     <div className="equal-columns" data-gap="large">
                         <div >
@@ -76,14 +78,14 @@ const About: React.FC<aboutProps> = ({ theme }) => {
             <section className="section">
                 <div className="wrapper" data-width="narrow">
                     <div className="equal-columns" data-auto="none">
-                        <div className="card">
-                            <h2>Stats</h2>
+                        <div className="card" data-background='grey'>
+                            <h2 data-aligntment="center">Stats</h2>
                             <p>8+ Years of Work</p>
                             <p>{contributions ? `${contributions}+ Contributions This Year` : 'Loading Contributions...'}</p>
                             <p>5+ Satisfied Customers</p>
                         </div>
-                        <div className="card">
-                            <h2>Skills</h2>
+                        <div className="card" data-overflow='none' data-background='grey'>
+                            <h2 data-aligntment="center">Skills</h2>
                             <div className="skills__box">
                                 <div className="skills__group">
                                     <div className="skills__data">
@@ -174,6 +176,7 @@ const About: React.FC<aboutProps> = ({ theme }) => {
                         </div>
                     </div>
                 </div>
+                <StarsBackground theme={theme}></StarsBackground>
             </section>
         </main>
     );
