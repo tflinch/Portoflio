@@ -20,30 +20,35 @@ const projects = [{
     platform: 'web',
     img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/eventflow-screely.png',
     title: 'Event Flow',
-    category: 'logistic'
+    category: 'logistic',
+    git_link: 'https://github.com/tflinch/event-flow-frontend'
 }, {
     platform: 'web',
     img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/thelasticey-screely.png',
     title: 'The Last Icey',
-    category: 'game'
+    category: 'game',
+    git_link: 'https://github.com/tflinch/The-Last-Icey'
 }
     , {
     platform: 'web',
     img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/spoiledpotato-screely.png',
     title: 'Spoiled Potato',
-    category: 'enterainment'
+    category: 'enterainment',
+    git_link: 'https://github.com/tflinch/SpoiledPotato'
 }
     , {
     platform: 'web',
     img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/dailypoints-screely.png',
     title: 'Daily Points',
-    category: 'e-commerce'
+    category: 'e-commerce',
+    git_link: 'https://github.com/tflinch/Daily-Points'
 }
     , {
     platform: 'mobile',
     img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/weathersection.jpeg',
     title: 'Weather Section',
-    category: 'weather'
+    category: 'weather',
+    git_link: 'https://github.com/ejspriggs/fireteamproject'
 }
 ]
 
@@ -89,29 +94,31 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
             </section>
             <section className="section">
                 <div className="wrapper">
-                    <h2>Featured Projects</h2>
-                    <div className="flex-group">
-                        <select
-                            name="platform"
-                            id="platform"
-                            onChange={(e) => handleFilterChange(e.target.value, filterCategory)}
-                        >
-                            <option value="all">Type: All</option>
-                            <option value="web">Web</option>
-                            <option value="mobile">Mobile</option>
-                        </select>
-                        <select
-                            name="category"
-                            id="category"
-                            onChange={(e) => handleFilterChange(filterPlatform, e.target.value)}
-                        >
-                            <option value="all">Type: All</option>
-                            <option value="e-commerce">E-Commerce</option>
-                            <option value="enterainment">Entertainment</option>
-                            <option value="game">Game</option>
-                            <option value="logistic">Logistic</option>
-                            <option value="weather">Weather</option>
-                        </select>
+                    <div className="sub_wrapper">
+                        <h2>Featured Projects</h2>
+                        <div className="flex-group">
+                            <select
+                                name="platform"
+                                id="platform"
+                                onChange={(e) => handleFilterChange(e.target.value, filterCategory)}
+                            >
+                                <option value="all">Type: All</option>
+                                <option value="web">Web</option>
+                                <option value="mobile">Mobile</option>
+                            </select>
+                            <select
+                                name="category"
+                                id="category"
+                                onChange={(e) => handleFilterChange(filterPlatform, e.target.value)}
+                            >
+                                <option value="all">Type: All</option>
+                                <option value="e-commerce">E-Commerce</option>
+                                <option value="enterainment">Entertainment</option>
+                                <option value="game">Game</option>
+                                <option value="logistic">Logistic</option>
+                                <option value="weather">Weather</option>
+                            </select>
+                        </div>
                     </div>
                     <article className="equal-columns" data-columns="three">
                         {filteredProjects.map((project) => (
@@ -124,7 +131,7 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
                                             <li data-category={project.category}>{project.category}</li>
                                         </ul>
                                         <h3 className="projects__title">{project.title}</h3>
-                                        <a href="#" className="projects__button button button__small">
+                                        <a href={project.git_link} className="projects__button button button__small">
                                             <RiLink />
                                         </a>
                                     </div>

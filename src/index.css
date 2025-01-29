@@ -354,6 +354,12 @@
 
     }
 
+    .sub_wrapper {
+        @media(width < 760px) {
+            justify-self: center;
+        }
+    }
+
     form {
         max-width: 70rem;
         margin: 1rem auto;
@@ -467,6 +473,8 @@
         svg {
             position: relative;
             top: 5px;
+            transition: ease 1s, display 1s, translate 1s;
+
         }
 
         svg:hover {
