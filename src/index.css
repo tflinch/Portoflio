@@ -463,6 +463,17 @@
         text-align: center;
         padding-block: 8rem;
         gap: 2rem;
+
+        svg {
+            position: relative;
+            top: 5px;
+        }
+
+        svg:hover {
+            color: var(--clr-light-blue);
+            width: 35px;
+            height: 35px;
+        }
     }
 
     [aria-controls='primary-nav'] {
