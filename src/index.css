@@ -364,9 +364,7 @@
         max-width: 70rem;
         margin: 1rem auto;
         text-align: center;
-        margin-bottom: 3rem;
-
-
+        padding: 1rem;
     }
 
     .input-box {
@@ -374,10 +372,12 @@
         justify-content: space-between;
         flex-wrap: wrap;
         margin-bottom: 1.5rem;
+        
         /* Add spacing between input-boxes */
 
         input {
             margin-inline: .3rem;
+            padding: .2rem;
         }
 
         @media(width <720px) {
@@ -392,7 +392,8 @@
 
     .text-box {
         height: 10rem;
-        margin-bottom: 1.5rem;
+        width: 30rem;
+        /* margin-bottom: 1.5rem; */
         /* Add spacing between text-box and submit button */
 
     }
@@ -408,8 +409,9 @@
         /* width: 100%; */
         padding: 1.5rem;
         font-size: 1.2rem;
-        margin: .7rem 0;
+        /* margin: .7rem 0; */
         height: 100%;
+        width: 100%;
 
     }
 
@@ -426,10 +428,27 @@
         /* Ensure errors appear below inputs */
     }
 
-    .btn {
-        margin-top: 2rem;
-        cursor: pointer;
-    }
+    .modal-button {
+        background-color: #1a1a1a; /* Dark background for contrast */
+        color: #ffffff;           /* White text for readability */
+        padding: 12px 24px;       /* Adequate padding for clickability */
+        border: none;             /* Remove default border */
+        border-radius: 6px;       /* Slightly rounded corners */
+        font-size: 16px;          /* Readable font size */
+        font-weight: 600;         /* Semi-bold text */
+        cursor: pointer;          /* Pointer cursor on hover */
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+      
+      .modal-button:hover {
+        background-color: #333333; /* Slightly lighter on hover */
+        transform: scale(1.05);    /* Subtle zoom effect */
+      }
+      
+      .modal-button:active {
+        background-color: #000000; /* Darker on click */
+        transform: scale(0.98);    /* Slightly shrink on click */
+      }
 }
 
 @layer components {
@@ -523,6 +542,31 @@
         a:focus-visbile {
             color: var(--clr-light-blue);
         }
+
+        .btn-link {
+            background: none;
+            border: none;
+            color: var(--clr-light-blue); /* Primary site color */
+            cursor: pointer;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.2s ease;
+          }
+          
+          .btn-link:hover {
+            color: #086a6c; /* Darker variant for hover */
+            transform: translateY(-1px);
+          }
+          
+          .btn-link:focus {
+            outline: 2px dashed #086a6c;
+            outline-offset: 2px;
+          }
+          
+          .btn-link:active {
+            color: #002e2f;
+            transform: scale(0.98);
+          }
+          
 
         @media (width < 760px) {
             display: none;

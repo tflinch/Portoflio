@@ -112,6 +112,7 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({
     <>
       <Dialog open={open} onClose={onClose} fullWidth maxWidth='sm'>
         <DialogContent>
+          <h1> Contact</h1>
           <form onSubmit={handleSubmit}>
             <div className='equal-columns' data-alignment='centered'>
               <div className='input-box'>
@@ -155,7 +156,11 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({
                   className={errors.message ? 'error' : ''}
                 />
               </div>
-              <input type='submit' value='Send Message' className='btn' />
+              <input
+                type='submit'
+                value='Send Message'
+                className='modal-button'
+              />
             </div>
           </form>
         </DialogContent>
