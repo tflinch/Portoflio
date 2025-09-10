@@ -23,6 +23,8 @@ const projects = [
     title: 'Event Flow',
     category: 'logistic',
     git_link: 'https://main.d1eu39e0j3hvgj.amplifyapp.com/',
+    description:
+      'A logistics app to manage event schedules and workflows more efficiently.',
   },
   {
     platform: 'web',
@@ -30,13 +32,17 @@ const projects = [
     title: 'The Last Icey',
     category: 'game',
     git_link: 'https://tflinch.github.io/The-Last-Icey/',
+    description:
+      'A browser-based game built with HTML, CSS, and JavaScript for fun interactive play.',
   },
   {
     platform: 'web',
     img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/spoiledpotato-screely.png',
     title: 'Spoiled Potato',
-    category: 'enterainment',
+    category: 'entertainment',
     git_link: 'https://spoiledpotato.onrender.com/',
+    description:
+      'A movie review and recommendation platform for discovering trending films.',
   },
   {
     platform: 'web',
@@ -44,6 +50,8 @@ const projects = [
     title: 'Daily Points',
     category: 'e-commerce',
     git_link: 'https://daily-points.onrender.com/',
+    description:
+      'An e-commerce platform with a points-based rewards system for customer engagement.',
   },
   {
     platform: 'mobile',
@@ -51,6 +59,17 @@ const projects = [
     title: 'Weather Section',
     category: 'weather',
     git_link: 'https://github.com/ejspriggs/fireteamproject',
+    description:
+      'A mobile-friendly weather app integrating APIs to provide fire and weather alerts.',
+  },
+  {
+    platform: 'web',
+    img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/KnowNative.png',
+    title: 'KnowNative',
+    category: 'education',
+    git_link: 'https://knownative.io/demo',
+    description:
+      'A full-stack language learning app with JWT-secured APIs and React context state management.',
   },
 ];
 
@@ -152,6 +171,9 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
                       </li>
                     </ul>
                     <h3 className='projects__title'>{project.title}</h3>
+                    <p className='projects__description'>
+                      {project.description}
+                    </p>
                     <a
                       href={project.git_link}
                       className='projects__button button button__small'

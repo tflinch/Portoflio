@@ -54,7 +54,14 @@
     ul {
         margin: 0;
     }
-
+    li {
+        text-decoration: none;
+        list-style: none;
+    }
+    a {
+        text-decoration: none; 
+        color : inherit;
+    }
     p,
     li {
         text-wrap: pretty;
@@ -259,19 +266,6 @@
         }
     }
 
-    li {
-        list-style: none;
-    }
-
-    a {
-        text-decoration: none;
-        color: inherit;
-    }
-
-    a:hover,
-    a:focus-visible {
-        color: inherit
-    }
 
     img {
         border-radius: var(--border-radius-lg);
@@ -362,9 +356,12 @@
 
     form {
         max-width: 70rem;
-        margin: 1rem auto;
         text-align: center;
         padding: 1rem;
+
+        h1[data-aligntment='center'] {
+            margin-bottom: 1.5rem;
+        }
     }
 
     .input-box {
@@ -530,6 +527,7 @@
         font-weight: var(--fs-200);
 
         ul {
+            list-style: none;
             display: flex;
             gap: 0.5rem 1rem;
         }
