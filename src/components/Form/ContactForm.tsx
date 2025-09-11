@@ -120,7 +120,10 @@ export default function ContactFormModal({
       >
         <form onSubmit={handleSubmit}>
           <DialogContent>
-            <h1 data-aligntment='center'>Contact</h1>
+            <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+              <h1 data-aligntment='center'>Contact</h1>
+              <span className='availability-pill'>Available for work</span>
+            </div>
 
             <div className='equal-columns' data-alignment='centered'>
               <div className='input-box'>

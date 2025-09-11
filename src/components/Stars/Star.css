@@ -1,29 +1,30 @@
 /* src/components/Star.css */
 .star.dark {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: white;
-    /* border-radius: 50%; */
-    font-size: 3em;
-    animation: moveStars linear infinite;
-  }
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  /* border-radius: 50%; */
+  font-size: 3em;
+  animation: moveStars linear infinite;
+  will-change: transform;
+}
 .star.light {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: #2E236C;
-    /* border-radius: 50%; */
-    animation: moveStars linear infinite;
-    font-size: 5em;
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #2e236c;
+  /* border-radius: 50%; */
+  animation: moveStars linear infinite;
+  font-size: 5em;
+  will-change: transform;
+}
+
+@keyframes moveStars {
+  from {
+    transform: translateY(0) translateX(0);
   }
-  
-  @keyframes moveStars {
-    from {
-      transform: translateY(0) translateX(0);
-    }
-    to {
-      transform: translateY(100vh) translateX(100vw);
-    }
+  to {
+    transform: translateY(100vh) translateX(100vw);
   }
-  
+}
