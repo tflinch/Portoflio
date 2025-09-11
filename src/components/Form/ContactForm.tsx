@@ -112,7 +112,7 @@ export default function ContactFormModal({
     <>
       <Dialog
         open={open}
-        onClose={(event, reason) => {
+        onClose={(reason) => {
           if (reason !== 'backdropClick') onClose();
         }}
         fullWidth
