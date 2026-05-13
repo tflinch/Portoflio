@@ -25,82 +25,77 @@ const initialFormModel: FormModel = {
     subject: "",
 };
 
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const Contact: React.FC<ContactProps> = ({ theme }) => {
     const [messageDetails, setMessageDetails] = useState<FormModel>(initialFormModel);
     const [errors, setErrors] = useState<Partial<FormModel>>({});
     const [snackbar, setSnackbar] = useState<{ open: boolean; message: string; severity: AlertColor } | null>(null);
     const navigate = useNavigate();
 
-    const validateForm = (): boolean => {
+    const validateForm = (): { isValid: boolean; errors: Partial<FormModel> } => {
         const newErrors: Partial<FormModel> = {};
-        let isValid = true;
 
         if (!messageDetails.name.trim()) {
             newErrors.name = "Name cannot be blank";
-            isValid = false;
         }
 
         if (!messageDetails.email.trim()) {
             newErrors.email = "Email Address cannot be blank";
-            isValid = false;
-        } else {
-            const emailRegex = /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,3})(\.[a-z]{2,3})?$/;
-            if (!emailRegex.test(messageDetails.email)) {
-                newErrors.email = "Enter a valid email address";
-                isValid = false;
-            }
+        } else if (!emailPattern.test(messageDetails.email)) {
+            newErrors.email = "Enter a valid email address";
         }
 
         if (!messageDetails.number.trim()) {
             newErrors.number = "Mobile Number cannot be blank";
-            isValid = false;
         }
 
         if (!messageDetails.subject.trim()) {
             newErrors.subject = "Subject cannot be blank";
-            isValid = false;
         }
 
         if (!messageDetails.message.trim()) {
             newErrors.message = "Message cannot be blank";
-            isValid = false;
         }
 
         setErrors(newErrors);
-        return isValid;
+        return { isValid: Object.keys(newErrors).length === 0, errors: newErrors };
     };
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if (validateForm()) {
-            try {
-                await sendEmail(messageDetails);
-                setSnackbar({
-                    open: true,
-                    message: "Your message has been sent successfully!",
-                    severity: "success",
-                });
-                setTimeout(() => {
-                    navigate("/");
-                }, 2000);
-            } catch (err: any) {
-                console.error("Email sending error:", err);
+        const { isValid, errors: latestErrors } = validateForm();
 
-                // Handle API error response
-                const apiErrorMessage = err.message || "Failed to send email. Please try again later.";
-                setSnackbar({
-                    open: true,
-                    message: apiErrorMessage,
-                    severity: "error",
-                });
-            }
-        } else {
-            const errorMessages = Object.values(errors)
-                .filter((error) => error)
+        if (!isValid) {
+            const errorMessages = Object.values(latestErrors)
+                .filter((e) => e)
                 .join(", ");
             setSnackbar({
                 open: true,
                 message: errorMessages || "Please fix the errors in the form.",
+                severity: "error",
+            });
+            return;
+        }
+
+        try {
+            await sendEmail(messageDetails);
+            setSnackbar({
+                open: true,
+                message: "Your message has been sent successfully!",
+                severity: "success",
+            });
+            setTimeout(() => {
+                navigate("/");
+            }, 2000);
+        } catch (err: unknown) {
+            console.error("Email sending error:", err);
+            const apiErrorMessage = err instanceof Error
+                ? err.message
+                : "Failed to send email. Please try again later.";
+            setSnackbar({
+                open: true,
+                message: apiErrorMessage,
                 severity: "error",
             });
         }
@@ -113,7 +108,6 @@ const Contact: React.FC<ContactProps> = ({ theme }) => {
             [name]: value,
         }));
 
-        // Clear the error for this input field
         setErrors((prevErrors) => ({
             ...prevErrors,
             [name]: "",
@@ -128,56 +122,71 @@ const Contact: React.FC<ContactProps> = ({ theme }) => {
         <main className={theme}>
             <section className="section">
                 <div className="wrapper" data-width="narrow">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} noValidate>
                         <div className="equal-columns" data-alignment="centered">
                             <div className="input-box">
-                                <input
-                                    type="text"
-                                    name="name"
-                                    placeholder="Full Name"
-                                    value={messageDetails.name}
-                                    onChange={handleChange}
-                                    className={errors.name ? "error" : ""}
-                                />
-                                <input
-                                    type="email"
-                                    name="email"
-                                    placeholder="Email Address"
-                                    value={messageDetails.email}
-                                    onChange={handleChange}
-                                    className={errors.email ? "error" : ""}
-                                />
+                                <div className="input-field">
+                                    <label htmlFor="name">Full Name</label>
+                                    <input
+                                        id="name"
+                                        type="text"
+                                        name="name"
+                                        value={messageDetails.name}
+                                        onChange={handleChange}
+                                        className={errors.name ? "error" : ""}
+                                    />
+                                </div>
+                                <div className="input-field">
+                                    <label htmlFor="email">Email Address</label>
+                                    <input
+                                        id="email"
+                                        type="email"
+                                        name="email"
+                                        value={messageDetails.email}
+                                        onChange={handleChange}
+                                        className={errors.email ? "error" : ""}
+                                    />
+                                </div>
                             </div>
 
                             <div className="input-box">
-                                <input
-                                    type="text"
-                                    name="number"
-                                    placeholder="Mobile Number"
-                                    value={messageDetails.number}
-                                    onChange={handleChange}
-                                    className={errors.number ? "error" : ""}
-                                />
-                                <input
-                                    type="text"
-                                    name="subject"
-                                    placeholder="Email Subject"
-                                    value={messageDetails.subject}
-                                    onChange={handleChange}
-                                    className={errors.subject ? "error" : ""}
-                                />
+                                <div className="input-field">
+                                    <label htmlFor="number">Mobile Number</label>
+                                    <input
+                                        id="number"
+                                        type="text"
+                                        name="number"
+                                        value={messageDetails.number}
+                                        onChange={handleChange}
+                                        className={errors.number ? "error" : ""}
+                                    />
+                                </div>
+                                <div className="input-field">
+                                    <label htmlFor="subject">Email Subject</label>
+                                    <input
+                                        id="subject"
+                                        type="text"
+                                        name="subject"
+                                        value={messageDetails.subject}
+                                        onChange={handleChange}
+                                        className={errors.subject ? "error" : ""}
+                                    />
+                                </div>
                             </div>
 
                             <div className="text-box">
-                                <textarea
-                                    name="message"
-                                    cols={30}
-                                    rows={10}
-                                    placeholder="Your Message"
-                                    value={messageDetails.message}
-                                    onChange={handleChange}
-                                    className={errors.message ? "error" : ""}
-                                ></textarea>
+                                <div className="input-field">
+                                    <label htmlFor="message">Your Message</label>
+                                    <textarea
+                                        id="message"
+                                        name="message"
+                                        cols={30}
+                                        rows={10}
+                                        value={messageDetails.message}
+                                        onChange={handleChange}
+                                        className={errors.message ? "error" : ""}
+                                    ></textarea>
+                                </div>
                             </div>
 
                             <input type="submit" value="Send Message" className="btn" />
@@ -186,7 +195,6 @@ const Contact: React.FC<ContactProps> = ({ theme }) => {
                 </div>
             </section>
 
-            {/* Snackbar for feedback */}
             {snackbar && (
                 <Snackbar
                     open={snackbar.open}

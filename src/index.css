@@ -376,7 +376,8 @@
         margin-bottom: 1.5rem;
         /* Add spacing between input-boxes */
 
-        input {
+        .input-field {
+            flex: 1;
             margin-inline: .3rem;
         }
 
@@ -384,9 +385,21 @@
             display: block;
             margin: 0;
 
-            input {
+            .input-field {
                 margin-block: .3rem;
+                margin-inline: 0;
             }
+        }
+    }
+
+    .input-field {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            margin-bottom: .25rem;
+            font-size: 0.9rem;
+            color: var(--clr-erie-black);
         }
     }
 
