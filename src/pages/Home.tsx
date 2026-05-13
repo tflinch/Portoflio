@@ -1,10 +1,8 @@
-import { RiLink } from '@remixicon/react';
+import { RiGithubLine, RiExternalLinkLine } from '@remixicon/react';
 import { ReactTyped } from "react-typed";
+import { Card, CardActions, CardContent, CardMedia, Chip, IconButton, Stack } from '@mui/material';
 import StarsBackground from '../components/Stars/StarsBackground';
 import { useState, useEffect } from 'react';
-
-// import StarsBackground from '../components/Stars/StarsBackground'
-
 
 interface HomeProps {
     theme: 'light' | 'dark'
@@ -16,41 +14,66 @@ const positioningRoles = [
     'Reliability Engineer',
 ];
 
-const projects = [{
-    platform: 'web',
-    img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/eventflow-screely.png',
-    title: 'Event Flow',
-    category: 'logistic',
-    git_link: 'https://github.com/tflinch/event-flow-frontend'
-}, {
-    platform: 'web',
-    img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/thelasticey-screely.png',
-    title: 'The Last Icey',
-    category: 'game',
-    git_link: 'https://github.com/tflinch/The-Last-Icey'
+interface Project {
+    platform: 'web' | 'mobile';
+    category: 'logistic' | 'game' | 'entertainment' | 'e-commerce' | 'weather';
+    img: string;
+    title: string;
+    description: string;
+    tech: string[];
+    git_link: string;
+    live_url?: string;
 }
-    , {
-    platform: 'web',
-    img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/spoiledpotato-screely.png',
-    title: 'Spoiled Potato',
-    category: 'entertainment',
-    git_link: 'https://github.com/tflinch/SpoiledPotato'
-}
-    , {
-    platform: 'web',
-    img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/dailypoints-screely.png',
-    title: 'Daily Points',
-    category: 'e-commerce',
-    git_link: 'https://github.com/tflinch/Daily-Points'
-}
-    , {
-    platform: 'mobile',
-    img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/weathersection.jpeg',
-    title: 'Weather Section',
-    category: 'weather',
-    git_link: 'https://github.com/ejspriggs/fireteamproject'
-}
-]
+
+// TODO: update description, tech, and live_url per project as each one is
+// restood up. Current copy is a placeholder draft.
+const projects: Project[] = [
+    {
+        platform: 'web',
+        category: 'logistic',
+        img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/eventflow-screely.png',
+        title: 'Event Flow',
+        description: 'Event-management interface for organizers — schedules, attendees, and logistics in one view.',
+        tech: ['React', 'TypeScript', 'Node.js', 'MongoDB'],
+        git_link: 'https://github.com/tflinch/event-flow-frontend',
+    },
+    {
+        platform: 'web',
+        category: 'game',
+        img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/thelasticey-screely.png',
+        title: 'The Last Icey',
+        description: 'Browser game with keyboard-driven action and original sprite art.',
+        tech: ['JavaScript', 'HTML5 Canvas', 'CSS'],
+        git_link: 'https://github.com/tflinch/The-Last-Icey',
+    },
+    {
+        platform: 'web',
+        category: 'entertainment',
+        img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/spoiledpotato-screely.png',
+        title: 'Spoiled Potato',
+        description: 'Movie review aggregator with user-driven ratings and watchlist tracking.',
+        tech: ['React', 'Node.js', 'Express', 'MongoDB'],
+        git_link: 'https://github.com/tflinch/SpoiledPotato',
+    },
+    {
+        platform: 'web',
+        category: 'e-commerce',
+        img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/dailypoints-screely.png',
+        title: 'Daily Points',
+        description: 'Loyalty-rewards platform letting customers track and redeem daily points.',
+        tech: ['React', 'Firebase', 'JavaScript'],
+        git_link: 'https://github.com/tflinch/Daily-Points',
+    },
+    {
+        platform: 'mobile',
+        category: 'weather',
+        img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/weathersection.jpeg',
+        title: 'Weather Section',
+        description: 'Fire-alert dashboard with geolocation overlays — team capstone built with Leaflet.js.',
+        tech: ['React', 'Leaflet.js', 'OpenWeather API'],
+        git_link: 'https://github.com/ejspriggs/fireteamproject',
+    },
+];
 
 const Home: React.FC<HomeProps> = ({ theme }) => {
     const [filterPlatform, setFilterPlatform] = useState<string>('all');
@@ -132,21 +155,55 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
                     </div>
                     <article className="equal-columns" data-columns="three">
                         {filteredProjects.map((project) => (
-                            <div className="card" key={project.img}>
-                                <img src={project.img} alt={project.title} className="projects__img" />
-                                <div className="projects__modal">
-                                    <div>
-                                        <ul className="tag-list" role="list">
-                                            <li data-platform={project.platform}>{project.platform}</li>
-                                            <li data-category={project.category}>{project.category}</li>
-                                        </ul>
-                                        <h3 className="projects__title">{project.title}</h3>
-                                        <a href={project.git_link} className="projects__button button button__small">
-                                            <RiLink />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                            <Card
+                                key={project.git_link}
+                                variant="outlined"
+                                sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}
+                            >
+                                <CardMedia
+                                    component="img"
+                                    height={180}
+                                    image={project.img}
+                                    alt={`${project.title} screenshot`}
+                                />
+                                <CardContent sx={{ flexGrow: 1 }}>
+                                    <h3>{project.title}</h3>
+                                    <p>{project.description}</p>
+                                    <Stack
+                                        direction="row"
+                                        spacing={0.5}
+                                        useFlexGap
+                                        flexWrap="wrap"
+                                        sx={{ mt: 1.5 }}
+                                    >
+                                        {project.tech.map((t) => (
+                                            <Chip key={t} label={t} size="small" />
+                                        ))}
+                                    </Stack>
+                                </CardContent>
+                                <CardActions>
+                                    <IconButton
+                                        href={project.git_link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label={`${project.title} on GitHub`}
+                                        size="small"
+                                    >
+                                        <RiGithubLine />
+                                    </IconButton>
+                                    {project.live_url && (
+                                        <IconButton
+                                            href={project.live_url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label={`Visit live ${project.title} site`}
+                                            size="small"
+                                        >
+                                            <RiExternalLinkLine />
+                                        </IconButton>
+                                    )}
+                                </CardActions>
+                            </Card>
                         ))}
                     </article>
                 </div>
