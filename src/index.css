@@ -484,13 +484,21 @@
         }
     }
 
-    [aria-controls='primary-nav'] {
+    .icon-button {
+        background: transparent;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+        color: inherit;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header-controls {
         z-index: 100;
         background: transparent;
         border: 0;
-    }
-
-    [aria-controls='primary-nav'] {
         display: none;
     }
 
@@ -568,11 +576,12 @@
     }
 
     @media (width < 760px) {
-        [aria-controls='primary-nav'] {
-            display: block;
+        .header-controls {
+            display: flex;
+            gap: 0.5rem;
         }
 
-        [aria-expanded='true']+.primary-navigation {
+        .header-controls[data-menu-open='true']+.primary-navigation {
             display: block;
             opacity: 1;
             translate: 0 0;

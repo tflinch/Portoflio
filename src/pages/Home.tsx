@@ -1,6 +1,7 @@
 import { RiGithubLine, RiExternalLinkLine } from '@remixicon/react';
 import { ReactTyped } from "react-typed";
 import { Card, CardActions, CardContent, CardMedia, Chip, IconButton, Stack } from '@mui/material';
+import { useLocation } from 'react-router-dom';
 import StarsBackground from '../components/Stars/StarsBackground';
 import { useState, useEffect } from 'react';
 
@@ -109,6 +110,15 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
         filterCards(filterPlatform, filterCategory);
     }, [filterPlatform, filterCategory]);
 
+    const location = useLocation();
+    useEffect(() => {
+        if (!location.hash) return;
+        const target = document.querySelector(location.hash);
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [location]);
+
     return (
         <main className={theme}>
             <section className="hero section" data-padding="compact">
@@ -123,7 +133,7 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
                 />
                 <p>Building reliable systems and the data pipelines that watch them.</p>
             </section>
-            <section className="section">
+            <section className="section" id="projects">
                 <div className="wrapper">
                     <div className="sub_wrapper">
                         <h2>Featured Projects</h2>
