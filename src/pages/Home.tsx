@@ -10,11 +10,11 @@ interface HomeProps {
     theme: 'light' | 'dark'
 }
 
-const textLines = [`Hi, I'm Tommy`,
-    'A Fullstack Developer',
-    'With a spark for usable and scalable applications',
-    'Check out my work below.',
-]
+const positioningRoles = [
+    'Full-Stack Engineer',
+    'Azure Data Scientist',
+    'Reliability Engineer',
+];
 
 const projects = [{
     platform: 'web',
@@ -33,7 +33,7 @@ const projects = [{
     platform: 'web',
     img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/spoiledpotato-screely.png',
     title: 'Spoiled Potato',
-    category: 'enterainment',
+    category: 'entertainment',
     git_link: 'https://github.com/tflinch/SpoiledPotato'
 }
     , {
@@ -90,30 +90,40 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
         <main className={theme}>
             <section className="hero section" data-padding="compact">
                 <StarsBackground theme={theme}></StarsBackground>
-                <ReactTyped strings={textLines} typeSpeed={60} backSpeed={50} style={{ fontSize: '2rem' }} />
+                <h1>Hi, I'm Tommy.</h1>
+                <ReactTyped
+                    strings={positioningRoles}
+                    typeSpeed={60}
+                    backSpeed={50}
+                    loop
+                    style={{ fontSize: '2rem' }}
+                />
+                <p>Building reliable systems and the data pipelines that watch them.</p>
             </section>
             <section className="section">
                 <div className="wrapper">
                     <div className="sub_wrapper">
                         <h2>Featured Projects</h2>
                         <div className="flex-group">
+                            <label htmlFor="platform" className="visually-hidden">Platform</label>
                             <select
                                 name="platform"
                                 id="platform"
                                 onChange={(e) => handleFilterChange(e.target.value, filterCategory)}
                             >
-                                <option value="all">Type: All</option>
+                                <option value="all">All platforms</option>
                                 <option value="web">Web</option>
                                 <option value="mobile">Mobile</option>
                             </select>
+                            <label htmlFor="category" className="visually-hidden">Category</label>
                             <select
                                 name="category"
                                 id="category"
                                 onChange={(e) => handleFilterChange(filterPlatform, e.target.value)}
                             >
-                                <option value="all">Type: All</option>
+                                <option value="all">All categories</option>
                                 <option value="e-commerce">E-Commerce</option>
-                                <option value="enterainment">Entertainment</option>
+                                <option value="entertainment">Entertainment</option>
                                 <option value="game">Game</option>
                                 <option value="logistic">Logistic</option>
                                 <option value="weather">Weather</option>
