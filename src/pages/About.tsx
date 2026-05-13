@@ -37,12 +37,12 @@ const About: React.FC<aboutProps> = ({ theme }) => {
                 <div className="wrapper" data-width="narrow">
                     <div className="equal-columns" data-auto="none">
                         <div className="card" data-background='grey'>
-                            <h2 data-aligntment="center">Stats</h2>
+                            <h2 data-alignment="center">Stats</h2>
                             <p>8+ Years of Work</p>
                             <p>5+ Satisfied Customers</p>
                         </div>
                         <div className="card" data-overflow='none' data-background='grey'>
-                            <h2 data-aligntment="center">Skills</h2>
+                            <h2 data-alignment="center">Skills</h2>
                             <div className="skills__box">
                                 <div className="skills__group">
                                     <div className="skills__data">
@@ -92,7 +92,7 @@ const About: React.FC<aboutProps> = ({ theme }) => {
                                 </div>
                                 <div className="skills__group">
                                     <div className="skills__data">
-                                        <img className="icon" src="https://port-images-bucket.s3.us-east-1.amazonaws.com/icons/php-fill.png" alt="python logo" />
+                                        <img className="icon" src="https://port-images-bucket.s3.us-east-1.amazonaws.com/icons/php-fill.png" alt="PHP logo" />
                                         <div>
                                             <h3 className="skills__name">PHP</h3>
                                             <span className="skills__level">Basic</span>

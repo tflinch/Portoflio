@@ -112,7 +112,7 @@ const Experience: React.FC<experienceProps> = ({ theme }) => {
                                 <div className="resume__group">
                                     <div className="resume__data">
                                         <div>
-                                            <h3 className="resume__name">Senior Analyst, Cloud Migration & Imp </h3>
+                                            <h3 className="resume__name">Senior Analyst, Cloud Migration & Implementation</h3>
                                             <span className="resume__level">December 2017 - December 2019</span>
                                         </div>
                                     </div>
@@ -168,7 +168,6 @@ const Experience: React.FC<experienceProps> = ({ theme }) => {
                             </div>
                         </div>
 
-                        {/* Repeat other skills areas here */}
                     </div>
                 </div>
             </section>
