@@ -1,53 +1,11 @@
 import { RiCss3Line, RiGitRepositoryLine, RiHtml5Line, RiJavascriptLine, RiReactjsLine, RiDatabase2Line, RiNodejsLine, RiCloudLine, RiFirebaseLine } from '@remixicon/react';
-import { useState, useEffect } from 'react';
-import { getContributions } from '../services/GitStats.ts';
 import StarsBackground from '../components/Stars/StarsBackground.tsx';
 
 interface aboutProps {
     theme: 'light' | 'dark';
 }
 
-interface ContributionCalendar {
-    colors: string[];
-    totalContributions: number;
-    weeks: {
-        contributionDays: {
-            color: string;
-            contributionCount: number;
-            date: string;
-            weekday: number;
-        }[];
-        firstDay: string;
-    }[];
-}
-
-interface GitHubUserContributions {
-    data: {
-        user: {
-            name: string;
-            contributionsCollection: {
-                contributionCalendar: ContributionCalendar;
-            };
-        };
-    };
-}
-
 const About: React.FC<aboutProps> = ({ theme }) => {
-    const [contributions, setContributions] = useState<GitHubUserContributions | null>(null);
-
-    useEffect(() => {
-        const fetchDefaultContributions = async () => {
-            try {
-                const data = await getContributions();
-                setContributions(data);
-            } catch (error) {
-                console.error('Error fetching contributions:', error);
-            }
-        };
-
-        fetchDefaultContributions();
-    }, []);
-
     return (
         <main className={theme}>
             <section className="section">
@@ -81,7 +39,6 @@ const About: React.FC<aboutProps> = ({ theme }) => {
                         <div className="card" data-background='grey'>
                             <h2 data-aligntment="center">Stats</h2>
                             <p>8+ Years of Work</p>
-                            <p>{contributions ? `${contributions}+ Contributions This Year` : 'Loading Contributions...'}</p>
                             <p>5+ Satisfied Customers</p>
                         </div>
                         <div className="card" data-overflow='none' data-background='grey'>
