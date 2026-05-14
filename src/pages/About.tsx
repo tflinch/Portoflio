@@ -95,13 +95,6 @@ const About: React.FC<aboutProps> = ({ theme }) => {
                                 </div>
                                 <div className="skills__group">
                                     <div className="skills__data">
-                                        <img className="icon" src="https://port-images-bucket.s3.us-east-1.amazonaws.com/icons/php-fill.png" alt="PHP logo" />
-                                        <div>
-                                            <h3 className="skills__name">PHP</h3>
-                                            <span className="skills__level">Basic</span>
-                                        </div>
-                                    </div>
-                                    <div className="skills__data">
                                         <RiDatabase2Line />
                                         <div>
                                             <h3 className="skills__name">MySQL</h3>
