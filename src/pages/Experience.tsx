@@ -40,26 +40,23 @@ const Experience: React.FC<experienceProps> = ({ theme }) => {
                                         </div>
                                     </div>
                                     <p>
-                                        Serve as team co-lead for a support team, overseeing development of software for innovative applications, implementing scalable infrastructure solutions, and fostering collaboration to deliver high-quality solutions
+                                        Co-lead a software support team building robotic, cloud, and brain-computer-interface applications for client innovation programs.
                                     </p>
                                     <ul>
                                         <li>
-                                            Developed software and robotic automation solutions, including integration with Boston Dynamics’ robotic dog SDK using Python, expanding capabilities with Flask API endpoints for robot control
+                                            Built Python + Flask API endpoints that drive missions on Boston Dynamics’ robotic dog (Spot).
                                         </li>
                                         <li>
-                                            Expanded automated mission capabilities for synchronous input/output from Neurosity headsets, integrating brain-computer interface features into robotic missions
+                                            Integrated Neurosity brain-computer-interface headsets into automated robotic missions for synchronous I/O.
                                         </li>
                                         <li>
-                                            Designed and developed static HTML & Vanilla JS Proof of Concepts, cloud architected using AWS services (S3, CloudFront, API Gateway, Lambda, Secrets Manager)
+                                            Shipped client-facing proofs of concept on AWS (S3, CloudFront, API Gateway, Lambda, Secrets Manager) with vanilla-JS front-ends.
                                         </li>
                                         <li>
-                                            Spearheaded design and implementation of CI/CD pipelines using Azure Pipelines for efficient deployment and automation, enhancing project Proof of Concept with Azure tools
+                                            Built CI/CD pipelines in Azure DevOps to automate PoC deployment and remove manual handoffs.
                                         </li>
                                         <li>
-                                            Collaborated with developers and stakeholders to define project requirements, scaling applications using modern technology stacks to accommodate evolving business needs
-                                        </li>
-                                        <li>
-                                            Provided full-stack development expertise, including both front-end and back-end services, to deliver comprehensive solutions that meet organizational goals
+                                            Worked across the full stack — front-end, back-end services, and the cloud glue between them — to ship systems end-to-end.
                                         </li>
                                     </ul>
                                 </div>
@@ -76,26 +73,23 @@ const Experience: React.FC<experienceProps> = ({ theme }) => {
                                         </div>
                                     </div>
                                     <p>
-                                        Spearheaded management and development of scalable application operations, ensuring optimal performance and reliability in alignment with organizational objectives
+                                        Site Reliability Engineering across financial-services applications under strict SLAs.
                                     </p>
                                     <ul>
                                         <li>
-                                            Designed and implemented robust disaster recovery plans and failovers for financial applications, mitigating risks and ensuring business continuity in event of system failures or disruptions
+                                            Built DR plans and active-passive failovers for financial applications to keep business continuity through outages.
                                         </li>
                                         <li>
-                                            Led efforts to measure and optimize system performance, proactively anticipating customer needs and driving continuous innovation to enhance capabilities and maintain competitive advantage
+                                            Profiled and tuned production systems to head off performance regressions before customers reported them.
                                         </li>
                                         <li>
-                                            Provided primary operational support and engineering expertise for multiple large, distributed software applications, demonstrating proficiency in troubleshooting and problem resolution
+                                            First-line engineering support for several large, distributed financial applications — triage, root-cause, fix.
                                         </li>
                                         <li>
-                                            Ensured compliance with SLA obligations by implementing comprehensive documentation and system design procedures, fostering transparency and accountability in service delivery
+                                            Owned SLA compliance through runbooks and design documentation that codified ops decisions.
                                         </li>
                                         <li>
-                                            Collaborated with developers and stakeholders to define project requirements, scaling applications using modern technology stacks to accommodate evolving business needs
-                                        </li>
-                                        <li>
-                                            Leveraged advanced analytics techniques to gather and analyze metrics from operating systems and applications, facilitating performance tuning and fault identification to optimize system performance and reliability
+                                            Pulled OS and application telemetry into structured analyses for fault identification and capacity planning.
                                         </li>
                                     </ul>
                                 </div>
@@ -111,13 +105,13 @@ const Experience: React.FC<experienceProps> = ({ theme }) => {
                                             <span className="resume__level">January 2019 - January 2020</span>
                                         </div>
                                     </div>
-                                    <p>Worked as freelance consultant, collaborating with clients to identify technology needs, devise innovative solutions, and oversee project implementation to achieve strategic objectives</p>
+                                    <p>Independent consultant scoping and delivering technology projects for small-business clients.</p>
                                     <ul>
                                         <li>
-                                            Led multiple client engagements, delivering tailored technology solutions to address business challenges and drive digital transformation, and advised clients on best practices and emerging technology trends
+                                            Ran multiple client engagements end-to-end — discovery, build, and post-launch handoff.
                                         </li>
                                         <li>
-                                            Played pivotal role in project management, ensuring timely and budget-conscious delivery, while fostering strong client relationships and contributing to business development initiatives
+                                            Owned scope and budget on every engagement; earned repeat business from satisfied clients.
                                         </li>
                                     </ul>
                                 </div>
