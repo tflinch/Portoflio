@@ -12,9 +12,9 @@
     }
 
     html {
-        -mo2-text-size-adjust: none;
+        -moz-text-size-adjust: none;
         -webkit-text-size-adjust: none;
-        -text-size-ajust: none;
+        text-size-adjust: none;
     }
 
     body,
