@@ -1,4 +1,4 @@
-import { RiCss3Line, RiGitRepositoryLine, RiHtml5Line, RiJavascriptLine, RiReactjsLine, RiDatabase2Line, RiNodejsLine, RiCloudLine, RiFirebaseLine } from '@remixicon/react';
+import { RiCss3Line, RiGitRepositoryLine, RiHtml5Line, RiJavascriptLine, RiReactjsLine, RiDatabase2Line, RiNodejsLine, RiCloudLine, RiFirebaseLine, RiLineChartLine, RiBrainLine } from '@remixicon/react';
 import StarsBackground from '../components/Stars/StarsBackground.tsx';
 
 interface aboutProps {
@@ -120,8 +120,24 @@ const About: React.FC<aboutProps> = ({ theme }) => {
                                     <div className="skills__data">
                                         <RiCloudLine />
                                         <div>
-                                            <h3 className="skills__name">Cloud</h3>
+                                            <h3 className="skills__name">AWS</h3>
                                             <span className="skills__level">Advance</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="skills__group">
+                                    <div className="skills__data">
+                                        <RiBrainLine />
+                                        <div>
+                                            <h3 className="skills__name">Azure ML</h3>
+                                            <span className="skills__level">Advance</span>
+                                        </div>
+                                    </div>
+                                    <div className="skills__data">
+                                        <RiLineChartLine />
+                                        <div>
+                                            <h3 className="skills__name">Observability</h3>
+                                            <span className="skills__level">Intermediate</span>
                                         </div>
                                     </div>
                                 </div>

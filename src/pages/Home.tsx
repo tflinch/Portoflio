@@ -22,7 +22,7 @@ interface Project {
     title: string;
     description: string;
     tech: string[];
-    git_link: string;
+    git_link?: string;
     live_url?: string;
 }
 
@@ -64,6 +64,15 @@ const projects: Project[] = [
         description: 'Loyalty-rewards platform letting customers track and redeem daily points.',
         tech: ['React', 'Firebase', 'JavaScript'],
         git_link: 'https://github.com/tflinch/Daily-Points',
+    },
+    {
+        platform: 'web',
+        category: 'weather',
+        img: 'https://port-images-bucket.s3.us-east-1.amazonaws.com/img/Weather-engine.png',
+        title: 'Weather Engine',
+        description: 'Local weather, hourly forecast, active wildfire detections, and severe weather alerts on a map. Single-page web app with auth and saved locations.',
+        tech: ['Next.js', 'TypeScript', 'Postgres', 'react-leaflet'],
+        // Private repo — git_link intentionally omitted; access on request.
     },
     {
         platform: 'mobile',
@@ -166,7 +175,7 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
                     <article className="equal-columns" data-columns="three">
                         {filteredProjects.map((project) => (
                             <Card
-                                key={project.git_link}
+                                key={project.title}
                                 variant="outlined"
                                 sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}
                             >
@@ -192,15 +201,17 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
                                     </Stack>
                                 </CardContent>
                                 <CardActions>
-                                    <IconButton
-                                        href={project.git_link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        aria-label={`${project.title} on GitHub`}
-                                        size="small"
-                                    >
-                                        <RiGithubLine />
-                                    </IconButton>
+                                    {project.git_link && (
+                                        <IconButton
+                                            href={project.git_link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label={`${project.title} on GitHub`}
+                                            size="small"
+                                        >
+                                            <RiGithubLine />
+                                        </IconButton>
+                                    )}
                                     {project.live_url && (
                                         <IconButton
                                             href={project.live_url}
