@@ -146,9 +146,23 @@ const Experience: React.FC<experienceProps> = ({ theme }) => {
                         <div className="resume__area">
                             <div className="resume__box">
                                 <div className="resume__group">
-                                    <ul>
-                                        <li>Azure Data Scientist Associate (DP-100), April 2026</li>
-                                        <li>AWS Solutions Architect Associate</li>
+                                    <ul className="cert-list">
+                                        <li>
+                                            <img
+                                                src="https://port-images-bucket.s3.us-east-1.amazonaws.com/img/microsoft-certified-associate-badge.svg"
+                                                alt="Microsoft Certified: Azure Data Scientist Associate badge"
+                                                className="cert-badge"
+                                            />
+                                            <span>Azure Data Scientist Associate (DP-100), April 2026</span>
+                                        </li>
+                                        <li>
+                                            <img
+                                                src="https://port-images-bucket.s3.us-east-1.amazonaws.com/img/aws-saa-badge-resized.f.png.png"
+                                                alt="AWS Certified Solutions Architect Associate badge"
+                                                className="cert-badge"
+                                            />
+                                            <span>AWS Solutions Architect Associate</span>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
