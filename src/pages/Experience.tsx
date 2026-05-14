@@ -13,6 +13,23 @@ const Experience: React.FC<experienceProps> = ({ theme }) => {
                     <div className="flow">
                         {theme === 'light' ? <h1 className={`${theme} work_title`}>Experience</h1> : <h1 className={`${theme} work_title dark`}>Experience</h1>}
                         <div className="resume__area">
+                            <h2 className="resume__title">NextPower</h2>
+                            <div className="resume__box">
+                                <div className="resume__group">
+                                    <div className="resume__data">
+                                        <div>
+                                            <h3 className="resume__name">Power Reliability & Monitoring Engineer II</h3>
+                                            <span className="resume__level">Starting 2026 <RiCheckboxCircleLine /> </span>
+                                        </div>
+                                    </div>
+                                    {/* TODO: refine description and add bullets after starting the role. */}
+                                    <p>
+                                        Reliability and monitoring engineering across NextPower's operating solar portfolio — turning field telemetry into uptime improvements and data-driven asset-management decisions.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="resume__area">
                             <h2 className="resume__title">Accenture</h2>
                             <div className="resume__box">
                                 <div className="resume__group">
@@ -127,6 +144,17 @@ const Experience: React.FC<experienceProps> = ({ theme }) => {
                                         <li>
                                             Implemented strategic cost-saving measures, including operational streamlining and resource optimization, leading to a notable 15% reduction in overhead costs and bolstering financial sustainability
                                         </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 className={`${theme} work_title`} data-padding='block-end'>Certifications</h2>
+                        <div className="resume__area">
+                            <div className="resume__box">
+                                <div className="resume__group">
+                                    <ul>
+                                        <li>Azure Data Scientist Associate (DP-100), April 2026</li>
+                                        <li>AWS Solutions Architect Associate</li>
                                     </ul>
                                 </div>
                             </div>
