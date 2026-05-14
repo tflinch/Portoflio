@@ -18,7 +18,10 @@ const About: React.FC<aboutProps> = ({ theme }) => {
                         <div className="flow font-family-basic">
                             <h2 className={theme}>Hi!👋🏾 </h2>
                             <p className="about_content">
-                                I’m Tommy Flinch, a passionate software engineer and creative problem solver based in New York. My work bridges the gap between innovative technology and impactful design, with a focus on creating scalable, user-centric digital solutions. Whether I’m developing back-end systems or crafting seamless user interfaces, I strive to deliver meaningful experiences that leave a lasting impact.
+                                I’m Tommy Flinch — a software engineer concentrating in reliability, with a passion for the clean energy industry. After four years at Accenture building software for robotic platforms and cloud infrastructure, I’m joining NextPower as Power Reliability & Monitoring Engineer II to lead monitoring and uptime across an operating solar portfolio.
+                            </p>
+                            <p className="about_content">
+                                <strong>Currently:</strong> Azure Data Scientist Associate (DP-100, April 2026). Preparing for the NextPower transition while sharpening Python, Azure ML, and time-series monitoring for the renewables space.
                             </p>
                             <p className="about_content">
                                 Throughout my career, I’ve had the privilege of contributing to projects that challenge me to combine technical expertise with creative thinking. From leading the development of a fire alert system leveraging geolocation and Leaflet.js, to building dynamic APIs for robotic automation, I’ve consistently embraced opportunities to expand my skill set and deliver solutions that address real-world challenges.
