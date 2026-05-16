@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Snackbar, Alert, AlertColor } from "@mui/material";
 
 import { sendEmail } from '../services/contact.ts'
+import StarsBackground from '../components/Stars/StarsBackground';
 
 
 interface ContactProps {
@@ -120,9 +121,10 @@ const Contact: React.FC<ContactProps> = ({ theme }) => {
 
     return (
         <main className={theme}>
-            <section className="section">
+            <section className="section contact-section">
+                <StarsBackground theme={theme} />
                 <div className="wrapper" data-width="narrow">
-                    <form onSubmit={handleSubmit} noValidate>
+                    <form onSubmit={handleSubmit} noValidate className="contact-form">
                         <div className="equal-columns" data-alignment="centered">
                             <div className="input-box">
                                 <div className="input-field">
