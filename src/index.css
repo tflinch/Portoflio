@@ -892,6 +892,80 @@
         }
     }
 
+    /* Bento grid — About page */
+
+    .bento-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas:
+            "photo bio bio"
+            "currently currently stats"
+            "skills skills skills";
+        gap: 1rem;
+        align-items: stretch;
+    }
+
+    .bento-tile {
+        padding: 1.5rem;
+        border-radius: 16px;
+        border: 1px solid rgba(127, 127, 127, 0.18);
+    }
+
+    .dark .bento-tile {
+        background: rgba(255, 255, 255, 0.04);
+    }
+
+    .light .bento-tile {
+        background: rgba(0, 0, 0, 0.03);
+    }
+
+    .bento-tile--photo {
+        grid-area: photo;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .bento-tile--photo img {
+        width: 100%;
+        height: 100%;
+        max-height: none;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
+    }
+
+    .bento-tile--bio {
+        grid-area: bio;
+    }
+
+    .bento-tile--currently {
+        grid-area: currently;
+    }
+
+    .bento-tile--stats {
+        grid-area: stats;
+    }
+
+    .bento-tile--skills {
+        grid-area: skills;
+    }
+
+    @media (width < 760px) {
+        .bento-grid {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "photo"
+                "bio"
+                "currently"
+                "stats"
+                "skills";
+        }
+
+        .bento-tile--photo {
+            min-height: 20rem;
+        }
+    }
+
     /* Liquid Glass — Contact form */
 
     .contact-section {

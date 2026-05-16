@@ -9,19 +9,20 @@ const About: React.FC<aboutProps> = ({ theme }) => {
     return (
         <main className={theme}>
             <section className="section">
-
+                <StarsBackground theme={theme} />
                 <div className="wrapper" data-width="wide">
-                    <div className="equal-columns" data-gap="large">
-                        <div >
-                            <img className="about-image" src="https://port-images-bucket.s3.us-east-1.amazonaws.com/img/tommy-flinch.JPG" alt="man smiling for a candid photo" />
+                    <div className="bento-grid">
+                        <div className="bento-tile bento-tile--photo">
+                            <img
+                                className="about-image"
+                                src="https://port-images-bucket.s3.us-east-1.amazonaws.com/img/tommy-flinch.JPG"
+                                alt="man smiling for a candid photo"
+                            />
                         </div>
-                        <div className="flow font-family-basic">
-                            <h2 className={theme}>Hi!👋🏾 </h2>
+                        <div className="bento-tile bento-tile--bio flow font-family-basic">
+                            <h2>Hi!👋🏾</h2>
                             <p className="about_content">
                                 I’m Tommy Flinch — a software engineer concentrating in reliability, with a passion for the clean energy industry. After four years at Accenture building software for robotic platforms and cloud infrastructure, I’m joining NextPower as Power Reliability & Monitoring Engineer II to lead monitoring and uptime across an operating solar portfolio.
-                            </p>
-                            <p className="about_content">
-                                <strong>Currently:</strong> Azure Data Scientist Associate (DP-100, April 2026). Preparing for the NextPower transition while sharpening Python, Azure ML, and time-series monitoring for the renewables space.
                             </p>
                             <p className="about_content">
                                 Throughout my career, I’ve had the privilege of contributing to projects that challenge me to combine technical expertise with creative thinking. From leading the development of a fire alert system leveraging geolocation and Leaflet.js, to building dynamic APIs for robotic automation, I’ve consistently embraced opportunities to expand my skill set and deliver solutions that address real-world challenges.
@@ -33,19 +34,19 @@ const About: React.FC<aboutProps> = ({ theme }) => {
                                 Beyond coding, I am deeply committed to empowering others through technology. Whether mentoring robotics teams or collaborating with nonprofits to teach full stack engineering education, I strive to inspire the next generation of innovators. Technology has the power to change lives, and I’m dedicated to making it accessible to everyone, one project at a time.
                             </p>
                         </div>
-                    </div>
-                </div>
-            </section>
-            <section className="section">
-                <div className="wrapper" data-width="narrow">
-                    <div className="equal-columns" data-auto="none">
-                        <div className="card" data-background='grey'>
-                            <h2 data-alignment="center">Stats</h2>
+                        <div className="bento-tile bento-tile--currently">
+                            <h2>Currently</h2>
+                            <p>
+                                Azure Data Scientist Associate (DP-100, April 2026). Preparing for the NextPower transition while sharpening Python, Azure ML, and time-series monitoring for the renewables space.
+                            </p>
+                        </div>
+                        <div className="bento-tile bento-tile--stats">
+                            <h2>By the Numbers</h2>
                             <p>8+ Years of Work</p>
                             <p>5+ Satisfied Customers</p>
                         </div>
-                        <div className="card" data-overflow='none' data-background='grey'>
-                            <h2 data-alignment="center">Skills</h2>
+                        <div className="bento-tile bento-tile--skills">
+                            <h2>Skills</h2>
                             <div className="skills__box">
                                 <div className="skills__group">
                                     <div className="skills__data">
@@ -145,7 +146,6 @@ const About: React.FC<aboutProps> = ({ theme }) => {
                         </div>
                     </div>
                 </div>
-                <StarsBackground theme={theme}></StarsBackground>
             </section>
         </main>
     );
