@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Snackbar, Alert, AlertColor } from "@mui/material";
 
@@ -15,6 +15,7 @@ interface FormModel {
     number: string;
     message: string;
     subject: string;
+    company: string;
 }
 
 const initialFormModel: FormModel = {
@@ -23,10 +24,13 @@ const initialFormModel: FormModel = {
     number: "",
     message: "",
     subject: "",
+    company: "",
 };
 
 const Contact: React.FC<ContactProps> = ({ theme }) => {
     const [messageDetails, setMessageDetails] = useState<FormModel>(initialFormModel);
+    // Used to reject submissions completed faster than any human could manage.
+    const mountedAt = useRef(Date.now());
     const [errors, setErrors] = useState<Partial<FormModel>>({});
     const [snackbar, setSnackbar] = useState<{ open: boolean; message: string; severity: AlertColor } | null>(null);
     const navigate = useNavigate();
@@ -44,16 +48,11 @@ const Contact: React.FC<ContactProps> = ({ theme }) => {
             newErrors.email = "Email Address cannot be blank";
             isValid = false;
         } else {
-            const emailRegex = /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,3})(\.[a-z]{2,3})?$/;
+            const emailRegex = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,3})(\.[a-z]{2,3})?$/;
             if (!emailRegex.test(messageDetails.email)) {
                 newErrors.email = "Enter a valid email address";
                 isValid = false;
             }
-        }
-
-        if (!messageDetails.number.trim()) {
-            newErrors.number = "Mobile Number cannot be blank";
-            isValid = false;
         }
 
         if (!messageDetails.subject.trim()) {
@@ -74,7 +73,10 @@ const Contact: React.FC<ContactProps> = ({ theme }) => {
         event.preventDefault();
         if (validateForm()) {
             try {
-                await sendEmail(messageDetails);
+                await sendEmail({
+                    ...messageDetails,
+                    elapsedMs: Date.now() - mountedAt.current,
+                });
                 setSnackbar({
                     open: true,
                     message: "Your message has been sent successfully!",
@@ -83,11 +85,12 @@ const Contact: React.FC<ContactProps> = ({ theme }) => {
                 setTimeout(() => {
                     navigate("/");
                 }, 2000);
-            } catch (err: any) {
+            } catch (err) {
                 console.error("Email sending error:", err);
 
                 // Handle API error response
-                const apiErrorMessage = err.message || "Failed to send email. Please try again later.";
+                const apiErrorMessage =
+                    err instanceof Error ? err.message : "Failed to send email. Please try again later.";
                 setSnackbar({
                     open: true,
                     message: apiErrorMessage,
@@ -153,7 +156,7 @@ const Contact: React.FC<ContactProps> = ({ theme }) => {
                                 <input
                                     type="text"
                                     name="number"
-                                    placeholder="Mobile Number"
+                                    placeholder="Mobile Number (optional)"
                                     value={messageDetails.number}
                                     onChange={handleChange}
                                     className={errors.number ? "error" : ""}
@@ -179,6 +182,21 @@ const Contact: React.FC<ContactProps> = ({ theme }) => {
                                     className={errors.message ? "error" : ""}
                                 ></textarea>
                             </div>
+
+                            {/* Honeypot. Hidden from humans, irresistible to bots.
+                                Submissions with this filled are silently discarded
+                                server-side. Off-screen rather than display:none,
+                                which bots detect. */}
+                            <input
+                                type="text"
+                                name="company"
+                                value={messageDetails.company}
+                                onChange={handleChange}
+                                tabIndex={-1}
+                                autoComplete="off"
+                                aria-hidden="true"
+                                style={{ position: "absolute", left: "-9999px", width: "1px", height: "1px", opacity: 0 }}
+                            />
 
                             <input type="submit" value="Send Message" className="btn" />
                         </div>

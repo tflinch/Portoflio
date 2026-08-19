@@ -17,34 +17,9 @@ interface aboutProps {
   theme: 'light' | 'dark';
 }
 
-interface ContributionCalendar {
-  colors: string[];
-  totalContributions: number;
-  weeks: {
-    contributionDays: {
-      color: string;
-      contributionCount: number;
-      date: string;
-      weekday: number;
-    }[];
-    firstDay: string;
-  }[];
-}
-
-interface GitHubUserContributions {
-  data: {
-    user: {
-      name: string;
-      contributionsCollection: {
-        contributionCalendar: ContributionCalendar;
-      };
-    };
-  };
-}
-
 const About: React.FC<aboutProps> = ({ theme }) => {
   const [contributions, setContributions] =
-    useState<GitHubUserContributions | null>(null);
+    useState<number | null>(null);
 
   useEffect(() => {
     const fetchDefaultContributions = async () => {
