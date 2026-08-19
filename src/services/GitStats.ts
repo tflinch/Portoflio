@@ -1,75 +1,10 @@
-const BASE_URL = "https://api.github.com/graphql"
-const ACCESS_KEY = `${import.meta.env.VITE_ACCESS_KEY}`
+import { totalContributions } from '../generated/github-stats';
 
-interface ContributionCalendar {
-    colors: string[];
-    totalContributions: number;
-    weeks: {
-        contributionDays: {
-            color: string;
-            contributionCount: number;
-            date: string;
-            weekday: number;
-        }[];
-        firstDay: string;
-    }[];
-}
+/**
+ * Contribution totals are fetched at build time by scripts/fetch-github-stats.mjs,
+ * so no GitHub token ever reaches the browser. Kept async to preserve the call
+ * signature About.tsx already uses.
+ */
+const getContributions = async (): Promise<number> => totalContributions;
 
-interface GitHubUserContributions {
-    data: {
-        user: {
-            name: string;
-            contributionsCollection: {
-                contributionCalendar: ContributionCalendar;
-            };
-        };
-    };
-}
-
-
-const getContributions = async (): Promise<GitHubUserContributions> => {
-    const response = await fetch(BASE_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            "Authorization": `bearer ${ACCESS_KEY}`,
-        },
-        body: JSON.stringify({
-            query: `
-                query {
-                    user(login: "tflinch") {
-                        name
-                        contributionsCollection {
-                            contributionCalendar {
-                                colors
-                                totalContributions
-                                weeks {
-                                    contributionDays {
-                                        color
-                                        contributionCount
-                                        date
-                                        weekday
-                                    }
-                                    firstDay
-                                }
-                            }
-                        }
-                    }
-                }
-            `,
-        }),
-    });
-
-    if (!response.ok) {
-        const errorBody = await response.text();
-        throw new Error(`Error: ${response.status}, Body: ${errorBody}`);
-    }
-    
-
-    const data = await response.json();
-    const totalContributions = data.data.user.contributionsCollection.contributionCalendar.totalContributions
-    return totalContributions;
-};
-
-
-export {getContributions}
+export { getContributions };

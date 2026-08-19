@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -19,6 +19,7 @@ interface FormModel {
   number: string;
   subject: string;
   message: string;
+  company: string;
 }
 
 const initialFormModel: FormModel = {
@@ -27,6 +28,7 @@ const initialFormModel: FormModel = {
   number: '',
   subject: '',
   message: '',
+  company: '',
 };
 
 export default function ContactFormModal({
@@ -35,6 +37,8 @@ export default function ContactFormModal({
 }: ContactFormModalProps) {
   const [messageDetails, setMessageDetails] =
     useState<FormModel>(initialFormModel);
+  // Used to reject submissions completed faster than any human could manage.
+  const mountedAt = useRef(Date.now());
   const [errors, setErrors] = useState<Partial<FormModel>>({});
   const [snackbar, setSnackbar] = useState<{
     open: boolean;
@@ -46,7 +50,7 @@ export default function ContactFormModal({
     const next: Partial<FormModel> = {};
     let ok = true;
     const emailRegex =
-      /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,3})(\.[a-z]{2,3})?$/i;
+      /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,3})(\.[a-z]{2,3})?$/i;
 
     if (!messageDetails.name.trim()) {
       next.name = 'Name cannot be blank';
@@ -57,10 +61,6 @@ export default function ContactFormModal({
       ok = false;
     } else if (!emailRegex.test(messageDetails.email)) {
       next.email = 'Enter a valid email address';
-      ok = false;
-    }
-    if (!messageDetails.number.trim()) {
-      next.number = 'Mobile Number cannot be blank';
       ok = false;
     }
     if (!messageDetails.subject.trim()) {
@@ -86,23 +86,25 @@ export default function ContactFormModal({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Submitting from modal...', messageDetails);
     if (!validateForm()) return;
 
     try {
-      const resp = await sendEmail(messageDetails);
-      console.log('sendEmail response:', resp);
+      await sendEmail({
+        ...messageDetails,
+        elapsedMs: Date.now() - mountedAt.current,
+      });
       setSnackbar({
         open: true,
         message: 'Your message has been sent!',
         severity: 'success',
       });
       setTimeout(onClose, 400);
-    } catch (err: any) {
+    } catch (err) {
       console.error('sendEmail error:', err);
       setSnackbar({
         open: true,
-        message: err?.message || 'Failed to send message',
+        message:
+          err instanceof Error ? err.message : 'Failed to send message',
         severity: 'error',
       });
     }
@@ -151,11 +153,10 @@ export default function ContactFormModal({
                 <input
                   type='tel'
                   name='number'
-                  placeholder='Mobile Number'
+                  placeholder='Mobile Number (optional)'
                   value={messageDetails.number}
                   onChange={handleChange}
                   className={errors.number ? 'error' : ''}
-                  required
                 />
                 <input
                   type='text'
@@ -178,6 +179,26 @@ export default function ContactFormModal({
                   required
                 />
               </div>
+
+              {/* Honeypot. Hidden from humans, irresistible to bots. Submissions
+                  with this filled are silently discarded server-side. Positioned
+                  off-screen rather than display:none, which bots detect. */}
+              <input
+                type='text'
+                name='company'
+                value={messageDetails.company}
+                onChange={handleChange}
+                tabIndex={-1}
+                autoComplete='off'
+                aria-hidden='true'
+                style={{
+                  position: 'absolute',
+                  left: '-9999px',
+                  width: '1px',
+                  height: '1px',
+                  opacity: 0,
+                }}
+              />
 
               <button type='submit' className='modal-button'>
                 Send Message

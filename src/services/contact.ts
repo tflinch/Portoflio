@@ -4,42 +4,38 @@ interface Data {
     number: string;
     message: string;
     subject: string;
+    company: string;
 }
 
-const sendEmail = async (formData: Data): Promise<void> => {
-    const { name, email, number, message, subject } = formData;
+interface Payload extends Data {
+    elapsedMs: number;
+}
 
-    const apiUrl = new URL("https://api.elasticemail.com/v2/email/send");
-    const API_KEY = import.meta.env.VITE_EMAIL_API_KEY;
-    const EMAIL_FROM = import.meta.env.VITE_EMAIL_FROM;
+// Public endpoint URL, not a credential -- the VITE_ prefix is correct here.
+// The Resend API key lives only in the Lambda's environment.
+const ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT;
 
-    // Set query parameters
-    apiUrl.searchParams.append("apikey", API_KEY);
-    apiUrl.searchParams.append("subject", subject);
-    apiUrl.searchParams.append("from", EMAIL_FROM);
-    apiUrl.searchParams.append("to", EMAIL_FROM);
-    apiUrl.searchParams.append(
-        "bodyHtml",
-        `<p>Name: ${name}</p><p>Email: ${email}</p><p>Phone: ${number}</p><p>Message: ${message}</p>`
-    );
-    apiUrl.searchParams.append("isTransactional", "false");
+const sendEmail = async (payload: Payload): Promise<void> => {
+    if (!ENDPOINT) {
+        throw new Error('Contact form is not configured.');
+    }
 
+    let response: Response;
     try {
-        const response = await fetch(apiUrl.toString(), {
-            method: "GET", // ElasticEmail API uses GET for query parameter-based requests
+        response = await fetch(ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
         });
+    } catch {
+        throw new Error('Network error. Please try again later.');
+    }
 
-        const responseData = await response.json();
-        if (!response.ok || !responseData.success) {
-            console.error("Error sending email:", responseData);
-            throw new Error(responseData.error || "Failed to send email.");
-        }
-        console.log("Email sent successfully:", responseData);
-    } catch (error) {
-        console.error("Error sending email:", error);
-        throw new Error("Failed to send email. Please try again later.");
+    if (!response.ok) {
+        const body = await response.json().catch(() => ({}));
+        throw new Error(body.error || 'Failed to send message. Please try again later.');
     }
 };
 
 export { sendEmail };
-
+export type { Data, Payload };
