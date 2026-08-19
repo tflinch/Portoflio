@@ -108,10 +108,20 @@ export const handler = async (event) => {
     return SILENT_OK;
   }
 
+  // A real client always sends elapsedMs. Its absence means a broken caller, not
+  // a bot -- returning a silent 200 there would show the visitor "message sent"
+  // while discarding a genuine submission.
+  // Strict type check: Number(null) is 0, which would sail through as a
+  // "too fast" bot and be silently dropped rather than reported.
+  const elapsed = typeof payload.elapsedMs === 'number' ? payload.elapsedMs : NaN;
+  if (!Number.isFinite(elapsed)) {
+    console.warn('Missing or non-numeric elapsedMs:', payload.elapsedMs);
+    return json(400, { error: 'Invalid submission.' });
+  }
+
   // Humans do not complete this form in under three seconds.
-  const elapsed = Number(payload.elapsedMs);
-  if (!Number.isFinite(elapsed) || elapsed < MIN_ELAPSED_MS) {
-    console.log('Timing check failed:', payload.elapsedMs);
+  if (elapsed < MIN_ELAPSED_MS) {
+    console.log('Timing check failed:', elapsed);
     return SILENT_OK;
   }
 
