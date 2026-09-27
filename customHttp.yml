@@ -1,8 +1,8 @@
 # Security headers applied by AWS Amplify Hosting.
 #
-# connect-src must list the contact-form Lambda's origin. Replace the wildcard
-# below with your exact Function URL origin once it is stable, e.g.
-#   https://abc123.lambda-url.us-east-1.on.aws
+# connect-src is pinned to this app's exact Function URL. A wildcard such as
+# https://*.lambda-url.us-east-1.on.aws would also permit any other AWS
+# account's function in the region. Update this if the Function URL changes.
 customHeaders:
   - pattern: '**'
     headers:
@@ -23,7 +23,7 @@ customHeaders:
           style-src 'self' 'unsafe-inline';
           img-src 'self' data: https://port-images-bucket.s3.us-east-1.amazonaws.com;
           font-src 'self' data:;
-          connect-src 'self' https://*.lambda-url.us-east-1.on.aws;
+          connect-src 'self' https://knb7mzuvqfi6wgxn3dvywkdyz40bmtmr.lambda-url.us-east-1.on.aws;
           frame-ancestors 'none';
           base-uri 'self';
           form-action 'self';
